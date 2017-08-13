@@ -247,12 +247,40 @@ public class AdminDao {
 				pembeli.setHarga_tiket( resultSet.getDouble( "harga_tiket" ));
 				pembeli.setTotal_transfer( resultSet.getDouble( "total_transfer" ));
 				pembeli.setUang_transfer_validasi( resultSet.getDouble( "uang_transfer_validasi" ));
+				pembeli.setBandara_berangkat(resultSet.getInt("bandara_berangkat"));
+				pembeli.setBandara_tujuan(resultSet.getInt("bandara_tujuan"));
 			}
-
-
-
+			
 			resultSet.close();
 			preparedStatement.close();
+			
+			
+			String queryBerangkat = "select * from pajak_bandara where id_bandara=?";
+			PreparedStatement preparedStatementBerangkat = conn.prepareStatement( queryBerangkat );
+			preparedStatementBerangkat.setInt(1, pembeli.getBandara_berangkat());
+			ResultSet resultSetBerangkat = preparedStatementBerangkat.executeQuery();
+			while( resultSetBerangkat.next() ) {
+				pembeli.setNm_berangkat(resultSetBerangkat.getString("nm_bandara"));
+				
+
+			}
+			resultSetBerangkat.close();
+			preparedStatementBerangkat.close();
+			
+			
+			String queryTujuan = "select * from pajak_bandara where id_bandara=?";
+			PreparedStatement preparedStatementTujuan = conn.prepareStatement( queryTujuan );
+			preparedStatementTujuan.setInt(1, pembeli.getBandara_tujuan());
+			ResultSet resultSetTujuan = preparedStatementTujuan.executeQuery();
+			while( resultSetTujuan.next() ) {
+				
+				pembeli.setNm_tujuan(resultSetTujuan.getString("nm_bandara"));
+
+			}
+			resultSetTujuan.close();
+			preparedStatementTujuan.close();
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

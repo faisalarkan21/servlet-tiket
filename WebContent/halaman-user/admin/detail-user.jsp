@@ -101,6 +101,49 @@
 
 						<div style="margin-left: -15px;">
 
+							<div class="col-md-9" style="margin-top: 25px;">
+
+								<br> <label style="margin-left: 15px;"
+									class="control-label"> Tujuan Penerbangan</label>
+								<hr class="garisbagian">
+
+							</div>
+							<div class="col-md-12" style="margin-top: -30px;">
+
+								<div class="col-md-12 ">
+									<div class="col-md-5 ">
+										<div id="ketikEmail" class="form-group {{error}}">
+
+											<div class="input-group   ">
+
+												<span class="input-group-addon"><i
+													class="fa fa-plane fa-lg detailDashIcon" aria-hidden="true"></i></span>
+												<label for="nama " class="control-label">
+													Keberangkatan </label> <input class="form-control " name="nama"
+													placeholder="" type="" id=""
+													value="${dataPembeli.nm_berangkat}">
+											</div>
+										</div>
+									</div>
+   
+									<div class="col-md-5 col-md-offset-1">
+										<div id="ketikPass" class="form-group  {{error}}">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="fa fa-plane fa-lg detailDashIcon" aria-hidden="true"></i></span>
+												<label for="email " class="control-label"> Tujuan </label> <input
+													class="form-control" name="" placeholder=""
+													type="" id="" value="${dataPembeli.nm_tujuan}">
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+
+
 
 							<div class="col-md-9" style="margin-top: 25px;">
 
@@ -130,8 +173,8 @@
 									<div id="ketikEmail" class="form-group {{error}} col-md-5">
 										<div class="input-group col-md-8">
 											<label for="harga " class="control-label"> Harga
-												Tiket</label> <input class="form-control " name="hargaTiket" id="harga"
-												placeholder="Biaya" type="text"
+												Tiket</label> <input class="form-control " name="hargaTiket"
+												id="harga" placeholder="Biaya" type="text"
 												value="<%=request.getAttribute("hargaTiket")%>" readonly>
 
 										</div>
@@ -167,8 +210,10 @@
 									<div id="ketikEmail" class="form-group {{error}} col-md-5 ">
 										<div class="input-group col-md-8">
 											<label for="harga " class="control-label"> Uang
-												Transfer</label> <input class="form-control " name="uangTotalTransfer"
-												id="uangtf" placeholder="Biaya" type="text" value="<%=request.getAttribute("totalTransfer")%>" readonly />
+												Transfer</label> <input class="form-control "
+												name="uangTotalTransfer" id="uangtf" placeholder="Biaya"
+												type="text"
+												value="<%=request.getAttribute("totalTransfer")%>" readonly />
 
 										</div>
 									</div>
@@ -217,7 +262,8 @@
 								href="#" class="btn btn-raised col-md-10" data-toggle="modal"
 								data-target="#modal">Hapus Peserta</a>
 							<div style="padding-left: 25px;" class="col-md-offset-2">
-								<a class=" btn btn-raised btn-info btn-md" href="<%=request.getContextPath()%>/AdminController?action=getAllPembeli">
+								<a class=" btn btn-raised btn-info btn-md"
+									href="<%=request.getContextPath()%>/AdminController?action=getAllPembeli">
 									Kembali</a>
 								<button style="margin-left: 10px;"
 									class="btn btn-raised btn-primary " type="submit">
@@ -310,16 +356,16 @@
                     var request = $
                         .ajax({
                             url: "http://127.0.0.1:8080/<%=request.getContextPath()%>/AdminController?action=deleteDetail&userId=${dataPembeli.idUser}",
-                            type: "POST",
-                            success:  function(data, textStatus) {
-                            	window.location.href = "AdminController?action=getAllPembeli";
-                            }  
-                        });
-                })  
-         
+														type : "POST",
+														success : function(
+																data,
+																textStatus) {
+															window.location.href = "AdminController?action=getAllPembeli";
+														}
+													});
+										})
 
-           
-	});      
+					});
 </script>
 
 

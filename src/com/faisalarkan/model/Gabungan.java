@@ -18,6 +18,24 @@ public class Gabungan {
 	private double total_transfer;
 	private int bandara_berangkat;
 	private int bandara_tujuan;
+	
+	private String nm_tujuan;
+	private String nm_berangkat; 
+	
+	
+	
+	public String getNm_tujuan() {
+		return nm_tujuan;
+	}
+	public void setNm_tujuan(String nm_tujuan) {
+		this.nm_tujuan = nm_tujuan;
+	}
+	public String getNm_berangkat() {
+		return nm_berangkat;
+	}
+	public void setNm_berangkat(String nm_berangkat) {
+		this.nm_berangkat = nm_berangkat;
+	}
 	private int status;
 	
 	
