@@ -106,9 +106,9 @@
 		<div style="padding-right: 30px; float: right;" class="col-md-6    ">
 
 			<div class="panel-body">
-				<a href="/keluar" style="margin-left: 10px;"
+				<a href="<%=request.getContextPath()%>/AdminController?action=logout" style="margin-left: 10px;"
 					class="btn btn-primary btn-raised">Log out</a> <a
-					href="/admin/dashboard" class="btn btn-primary btn-raised">Segarkan
+					href="<%=request.getContextPath()%>/AdminController?action=statistik" class="btn btn-primary btn-raised">Segarkan
 					Statistik</a>
 
 
