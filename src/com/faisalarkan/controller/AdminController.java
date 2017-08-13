@@ -109,7 +109,8 @@ public class AdminController extends HttpServlet {
 		} else if( action.equalsIgnoreCase( "logout" ) ) {
 
 			HttpSession session = request.getSession();
-			session.invalidate();
+			session.removeAttribute("admin");
+			session.removeAttribute("email");
 			response.sendRedirect(request.getContextPath());
 
 
@@ -218,15 +219,12 @@ public class AdminController extends HttpServlet {
 			}
 
 
-		}	else if( action.equalsIgnoreCase( "deleteDetail" ) ) {
-	
+		}	else if( action.equalsIgnoreCase( "deleteDetail" ) ) {	
+			
 			int userId = Integer.parseInt(request.getParameter("userId"));	
-			dao.deleteUser(userId);			
-
-			response.sendRedirect("AdminController?action=getAllPembeli");
-
-
-
+			dao.deleteUser(userId);				
+			
+		  
 		}
 
 

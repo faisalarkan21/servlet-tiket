@@ -48,7 +48,10 @@ public class UserController extends HttpServlet {
 		}else if( action.equalsIgnoreCase( "logout" ) ) {
 			
 			HttpSession session = request.getSession();
-			session.invalidate();
+		
+			session.removeAttribute("id");
+			session.removeAttribute("user");
+			session.removeAttribute("email");
 			response.sendRedirect(request.getContextPath());
 			
 

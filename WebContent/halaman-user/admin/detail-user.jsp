@@ -311,15 +311,15 @@
                         .ajax({
                             url: "http://127.0.0.1:8080/<%=request.getContextPath()%>/AdminController?action=deleteDetail&userId=${dataPembeli.idUser}",
                             type: "POST",
-                            success: window.location
-                                .replace("http://127.0.0.1:8080/<%=request.getContextPath()%>/AdminController?action=getAllPembeli")
-
+                            success:  function(data, textStatus) {
+                            	window.location.href = "AdminController?action=getAllPembeli";
+                            }  
                         });
-                })
+                })  
+         
 
-
-
-	});
+           
+	});      
 </script>
 
 

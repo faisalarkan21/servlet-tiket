@@ -16,7 +16,7 @@
 
 if(session.getAttribute("admin") !=null && session.getAttribute("email") != null)
 {
-   response.sendRedirect("halaman-user/admin/dashboard-admin.jsp");
+   response.sendRedirect(request.getContextPath()+"/AdminController?action=statistik");
 }
 
 
