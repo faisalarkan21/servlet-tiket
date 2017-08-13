@@ -69,7 +69,7 @@
                             <div class="input-group ">
 
                                 <span class="input-group-addon"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control " name="nama" placeholder="Nama Anda" type="name" value="">
+                                <input class="form-control" required name="nama" placeholder="Nama Anda" type="name" value="">
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <div id="ketikPass" class="form-group  {{error}}">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control" name="email" placeholder="Email Anda" type="email" value="">
+                                <input class="form-control" required name="email" placeholder="Email Anda" type="email" value="">
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                         <div id="ketikEmail" class="form-group {{error}}">
                             <div class="input-group ">
                                 <span class="input-group-addon"><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control " name="password" placeholder="Password" type="password" value="">
+                                <input class="form-control " required name="password" placeholder="Password" type="password" value="">
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         <div id="ketikEmail" class="form-group {{error}}">
                             <div class="input-group ">
                                 <span class="input-group-addon"><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control " placeholder="Konfirmasi Password" type="password" value="">
+                                <input class="form-control " required placeholder="Konfirmasi Password" type="password" value="">
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                         <div id="ketikEmail" class="form-group {{error}}">
                             <div class="input-group ">
                                 <span class="input-group-addon"><i class="fa fa-phone-square fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control " name="hp" placeholder="No Handphone" type="text" value="">
+                                <input class="form-control " required name="hp" placeholder="No Handphone" type="text" value="">
                             </div>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                                 <div class="input-group col-md-8">
                                     <label for="harga " class="control-label">                 
                                   Biaya Keberangkatan</label>
-                                    <input class="form-control " name="harga" id="biayaBerangkat" placeholder="Biaya Keberangkatan " type="text" value="" disabled>
+                                    <input class="form-control " required name="harga" id="biayaBerangkat" placeholder="Biaya Keberangkatan " type="text" value="" readonly>
 
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                          
            <%}%>  
         </select> 
-      
+       
                                 </div>
                             </div>
 
@@ -204,7 +204,7 @@
                                 <div class="input-group col-md-8">
                                     <label for="harga " class="control-label">                 
                                   Biaya Tujuan</label>
-                                    <input class="form-control " name="harga" id="biayaTujuan" placeholder="Biaya Tujuan" type="text" value=""   disabled>
+                                    <input class="form-control " required name="harga" id="biayaTujuan" placeholder="Biaya Tujuan" type="text" value=""   readonly>
 
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                                 <div class="input-group col-md-8">
                                     <label for="harga " class="control-label">                 
                                   Total Harga</label>
-                                    <input class="form-control " name="totalHargaTiket" id="totalHarga" placeholder="Total Harga" type="text" value="" readonly >
+                                    <input class="form-control " required name="totalHargaTiket" id="totalHarga" placeholder="Total Harga" type="text" value="" readonly >
 
                                 </div>
                             </div>
