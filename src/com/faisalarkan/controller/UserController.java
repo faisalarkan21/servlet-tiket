@@ -2,6 +2,7 @@ package com.faisalarkan.controller;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.faisalarkan.dao.UserDao;
+import com.faisalarkan.helper.ConvertCurrency;
 import com.faisalarkan.model.Gabungan;
 import com.faisalarkan.model.User;
 
@@ -42,6 +44,13 @@ public class UserController extends HttpServlet {
 			//			System.out.print(harga);
 			response.getWriter().print(harga);
 
+
+		}else if( action.equalsIgnoreCase( "logout" ) ) {
+			
+			HttpSession session = request.getSession();
+			session.invalidate();
+			response.sendRedirect(request.getContextPath());
+			
 
 		}
 
@@ -140,6 +149,7 @@ public class UserController extends HttpServlet {
 		//
 		//		String studentId = request.getParameter("studentId");
 		//
+		ConvertCurrency convert = new ConvertCurrency();
 
 		String forward = "";
 		String action = request.getParameter( "action" );
@@ -158,7 +168,14 @@ public class UserController extends HttpServlet {
 			pembeli.setGd_pembeli(request.getParameter("gd"));
 			pembeli.setBandara_berangkat(Integer.parseInt(request.getParameter("berangkatBandara")));
 			pembeli.setBandara_tujuan(Integer.parseInt(request.getParameter("tujuanBandara")));
-			pembeli.setHarga_tiket(Integer.parseInt(request.getParameter("totalHargaTiket")));
+			
+			try {
+				pembeli.setHarga_tiket(convert.UnformatRp(request.getParameter("totalHargaTiket")));
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
+			
 			pembeli.setUang_transfer_validasi(0);
 			pembeli.setPilihan_bank(request.getParameter("bank"));
 			pembeli.setTgl_order(dateFormat.format(date));
@@ -192,15 +209,15 @@ public class UserController extends HttpServlet {
 				session.setAttribute("user", pembeli.getNm_pembeli());
 				session.setAttribute("email", pembeli.getEmail_pembeli());
 				forward = "halaman-user/user/dashboard.jsp";
-
+				response.sendRedirect(forward);
+				
 			}else {
 
 				System.out.println("Email tidak sama");
 
 			}
 			
-			RequestDispatcher view = request.getRequestDispatcher( forward );
-			view.forward(request, response);
+			
 
 
 		} else if  ( action.equalsIgnoreCase( "data-pembeli" )) {
@@ -231,6 +248,7 @@ public class UserController extends HttpServlet {
 			Gabungan pembeli = new Gabungan ();
 			
 			pembeli.setUang_transfer_validasi(Double.parseDouble(request.getParameter("hargaTiketTotal")));
+			pembeli.setPilihan_bank(request.getParameter("pilihanBank"));
 			pembeli.setIdUser(idUser);
 			
 			System.out.println("asas");

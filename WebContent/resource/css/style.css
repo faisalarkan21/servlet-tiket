@@ -595,7 +595,7 @@ code {
 
 
 #picScroll2 {
-   background-image: url("images/pic4.jpg"); 
+   background-image: url("images/pic3.jpg"); 
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: -50px;
@@ -604,27 +604,28 @@ code {
 #picScroll3 {
   background-image: url("../images/tiket13.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;     
   background-position-y: -50px;
   /*background-position-x: 160px;*/
 }
 
 #picScroll4 {
   background-image: url("../images/footer.png");
-  background-size: cover;
+  background-size: cover;     
   background-repeat: no-repeat;
   background-position-y: -50px;
   /*background-position-x: 160px;*/
 }
 
 #picScroll5 {
-  background-color: black;
+  background-color: #212121 !important;
   background-repeat: no-repeat;
   background-position-y: -50px;
+  height:300px !important;     
   /*background-position-x: 160px;*/
 }
-
-
+       
+  
 /*
  
  Slider Panah
@@ -803,13 +804,11 @@ i.silver {
 }
 
 h2.kontak {
-  padding-top: 80px;
+  
   padding-left: 40px;
 }
 
-#Kolomkontak {
-  padding-bottom: 100px;
-}
+
 
 ul.kontak {
   list-style: none;

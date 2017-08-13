@@ -58,7 +58,8 @@
 						<a href="#" data-target="dropdown" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-spin fa-fw"></i>
  Login Sebagai : <%=session.getAttribute("user") %> <b class="caret"></b> </a>
 						<ul class="dropdown-menu">
-							<li><a href="/keluar">Log Out  <i class="material-icons">keyboard_arrow_right</i> </a></li>
+							<li><a href="<%=request.getContextPath()%>/UserController?action=logout">Log Out  <i
+						class="fa fa-sign-out"></i> </a></li>
 							<li class="divider"></li>
 							<li><a href="#">Bantuan  </a> </li>
 						</ul>

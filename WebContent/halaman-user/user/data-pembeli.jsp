@@ -37,7 +37,7 @@
 									<div class="form-group ">
 										<label class="control-label" for="">Nama </label>
 										<div class="form-input">
-											<input class="form-control" type="text" name="nama" value="<c:out value="${dataPembeli.nm_pembeli}" />">
+											<input class="form-control" type="text" name="nama" value="${dataPembeli.nm_pembeli}">
 										</div>
 									</div>
 								</div>
@@ -47,7 +47,7 @@
 										<div class="form-input">
 											<input class="form-control" type="text" name="email" value="${dataPembeli.email_pembeli}">
 										</div>
-									</div>
+									</div> 
 								</div>
 								<div class="col-md-4">
 									<div class="form-group ">

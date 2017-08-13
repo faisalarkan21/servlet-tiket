@@ -66,7 +66,7 @@
 									<div class="form-group ">
 										<label class="control-label" for="bank">Pilihan Bank </label>
 										<div class="form-input">
-											<input readonly class="form-control" type="text" name="hpUtama" value="${dataPembeli.pilihan_bank}">
+											<input readonly class="form-control" type="text" name="pilihanBank" value="${dataPembeli.pilihan_bank}">
 										</div>
 									</div>
 								</div>

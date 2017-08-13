@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
  
-@WebFilter("/halaman-user/user/*")
-public class FilterLoginUser implements Filter {
+@WebFilter("/halaman-user/admin/*")
+public class FilterLoginAdmin implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
@@ -26,9 +26,9 @@ public class FilterLoginUser implements Filter {
         HttpSession session = request.getSession(false);
         
         
-        String loginURI = request.getContextPath() + "/login-user.jsp";
+        String loginURI = request.getContextPath() + "/login-admin.jsp";
 
-        boolean loggedIn = session != null && session.getAttribute("user") != null;
+        boolean loggedIn = session != null && session.getAttribute("admin") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
 
         if (loggedIn || loginRequest) {

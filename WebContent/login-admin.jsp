@@ -14,7 +14,7 @@
 
 <%
 
-if(session.getAttribute("user") !=null && session.getAttribute("email") != null)
+if(session.getAttribute("admin") !=null && session.getAttribute("email") != null)
 {
    response.sendRedirect("halaman-user/admin/dashboard-admin.jsp");
 }

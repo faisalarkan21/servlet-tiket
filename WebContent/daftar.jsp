@@ -312,6 +312,25 @@
     <script>
     
     
+    
+    function toRp(angka) {
+        var rev = parseInt(angka, 10).toString().split('').reverse().join('');
+        var rev2 = '';
+        for (var i = 0; i < rev.length; i++) {
+            rev2 += rev[i];
+            if ((i + 1) % 3 === 0 && i !== (rev.length - 1)) {
+                rev2 += '.';
+            }
+        }
+        return 'Rp. ' + rev2.split('').reverse().join('') + ',00';
+    }
+    
+    
+    function convertToAngka(rupiah)
+    {
+    	return parseInt(rupiah.replace(/,.*|[^0-9]/g, ''), 10);
+    }
+    
     function keberangkatan(idberangkat){
     	
     	console.log(idberangkat)
@@ -323,10 +342,10 @@
                 	idBandara: idberangkat, 
                    
                   },
-                url: "TiketController?action=getBandaraHarga",   
+                url: "UserController?action=getBandaraHarga",   
                 success: function(data, text){
                 	 
-                	$('#biayaBerangkat').val(data) 
+                	$('#biayaBerangkat').val(toRp(data)) 
                 	totalHarga ();
                 }   
             });    
@@ -343,14 +362,14 @@
     	    $.ajax({    
                 type: "GET",               
                 cache: false,  
-                data: {  
+                data: {    
                 	idBandara: idTujuan, 
                    
                   },
-                url: "TiketController?action=getBandaraHarga",   
+                url: "UserController?action=getBandaraHarga",   
                 success: function(data, text){
                 	
-                	$('#biayaTujuan').val(data); 
+                	$('#biayaTujuan').val(toRp(data)); 
                 	totalHarga ();  
                 }   
             });    
@@ -362,19 +381,21 @@
     function totalHarga () {
     	
     	
-    	var biayaBerangkat = parseFloat($('#biayaBerangkat').val()); 
-    	var biayaTujuan = parseFloat($('#biayaTujuan').val());  
+    	
+    	
+    	var biayaBerangkat = parseFloat(convertToAngka($('#biayaBerangkat').val())); 
+    	var biayaTujuan = parseFloat(convertToAngka($('#biayaTujuan').val())) ;  
    
     
     	let hargaTotal = biayaBerangkat + biayaTujuan;
     	
     	if (isNaN(hargaTotal)){
     		 
-    	}else {   
+    	}else {    
     		
     	
     	console.log(hargaTotal);  
-    	$('#totalHarga').val(hargaTotal); 
+    	$('#totalHarga').val(toRp(hargaTotal)); 
     	
     	}
     	

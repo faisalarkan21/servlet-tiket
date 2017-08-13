@@ -41,7 +41,7 @@
 						class="icon-bar"></span>
 
 				</button>
-				<a class="navbar-brand" href="/"> Dashboard Admin <i
+				<a class="navbar-brand" href="<%=request.getContextPath()%>"> Dashboard Admin <i
 					class="fa fa-user-secret fa-fw fa-lg" aria-hidden="true"></i>
 
 					<div class="ripple-container"></div>
@@ -56,10 +56,12 @@
 				<ul class="nav-drop nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" data-target="dropdown"
 						class="dropdown-toggle" data-toggle="dropdown"><i
-							class="fa fa-cog fa-spin fa-fw fa-lg"></i> Admin :  <%=session.getAttribute("user") %> <b
-							class="caret"></b> </a>
+							class="fa fa-cog fa-spin fa-fw fa-lg"></i> Admin : <%=session.getAttribute("admin")%>
+							<b class="caret"></b> </a>
 						<ul class="dropdown-menu">
-							<li><a href="/keluar">Log Out <i class="material-icons">keyboard_arrow_right</i>
+							<li><a
+								href="<%=request.getContextPath()%>/AdminController?action=logout">Log
+									Out <i class="fa fa-sign-out"></i>
 							</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Bantuan </a></li>
@@ -71,14 +73,15 @@
 	<div class="nav-side-menu">
 		<div class="brand">
 			<i class="fa fa-rocket fa-lg  fa-fw" aria-hidden="true"></i> Admin
-		<%=session.getAttribute("user") %> 
+			<%=session.getAttribute("admin")%>
 		</div>
 		<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse"
 			data-target="#menu-content"></i>
 		<div class="menu-list">
 			<ul id="menu-content" class="menu-content collapse out">
-				<li><a style="display: block;" href="/admin/dashboard"> <i
-						class="fa fa-area-chart fa-lg"></i>Statistik Pembeli
+				<li><a style="display: block;"
+					href="<%=request.getContextPath()%>/AdminController?action=statistik">
+						<i class="fa fa-area-chart fa-lg"></i>Statistik Pembeli
 				</a></li>
 
 				<li data-toggle="collapse" data-target="#data"><a href="#"><i
@@ -89,26 +92,24 @@
 
 
 				<ul class="sub-menu collapse" id="data">
-					<li class="active"><a href="/admin/dashboard/semua-user"><i
+					<li class="active"><a
+						href="<%=request.getContextPath()%>/AdminController?action=getAllPembeli"><i
 							class="fa fa-chevron-right" aria-hidden="true"></i> Semua Pembeli</a></li>
-					<li class="active"><a href="/admin/dashboard/lunas"><i
+					<li class="active"><a
+						href="<%=request.getContextPath()%>/AdminController?action=getPembeliLunas"><i
 							class="fa fa-chevron-right" aria-hidden="true"></i> Pembeli Lunas
 					</a></li>
-					<li class="active"><a href="/admin/dashboard/belum-lunas"><i
+					<li class="active"><a
+						href="<%=request.getContextPath()%>/AdminController?action=getPembeliBelumLunas"><i
 							class="fa fa-chevron-right" aria-hidden="true"></i> Pembeli Belum
 							Lunas</a></li>
-					<li class="active"><a href="/admin/dashboard/waiting-list"><i
-							class="fa fa-chevron-right" aria-hidden="true"></i> Pembeli
-							Waiting List</a></li>
+
 				</ul>
 				<li><a style="display: block;"
-					href="/admin/dashboard/kotak-validasi"> <i
-						class="fa fa-envelope fa-lg"></i>Kotak Validasi Tiket
+					href="<%=request.getContextPath()%>/AdminController?action=getKotakValidasi">
+						<i class="fa fa-envelope fa-lg"></i>Kotak Validasi Tiket
 				</a></li>
-				<li><a style="display: block;"
-					href="/admin/dashboard/kotak-validasi"> <i
-						class="fa fa-envelope fa-lg"></i>Kotak Saran
-				</a></li>
+
 			</ul>
 		</div>
 	</div>

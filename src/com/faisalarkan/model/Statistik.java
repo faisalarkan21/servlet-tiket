@@ -10,7 +10,6 @@ public class Statistik {
 	private double totalEstimasiUang;
 	private double totalBelumDibayar;
 	
-	
 	public int getUserLunas() {
 		return userLunas;
 	}
@@ -53,6 +52,7 @@ public class Statistik {
 	public void setTotalBelumDibayar(double totalBelumDibayar) {
 		this.totalBelumDibayar = totalBelumDibayar;
 	}
+	
 	
 	
 	
