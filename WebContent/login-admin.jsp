@@ -70,7 +70,7 @@ if(session.getAttribute("admin") !=null && session.getAttribute("email") != null
             
             <div style="text-align: center;" id="pesan" class="form-group {{error}}">
               
-              <a class=" btn btn-raised btn-info btn-md" href="/daftar">Daftar</a>
+             
               <button id="login" class="btn btn-raised btn-primary" type="submit">Masuk</button>
             </div>
           </div>
