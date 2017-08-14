@@ -171,12 +171,11 @@
 			</div>
 			<div id="Kolomkontak" class="col-md-3">
 				<h2 style="font-size: 20px;" class="kontak">Situs ini dibuat
-					dengan :</h2>
-				<ul class="kontak">
-					<img style="margin-top: -20px; margin-left: 20px;"
-						src="resource/css/images/logoJava.png" alt="">
+					dengan :</h2>    
+				<ul class="kontak">   
+					<img  src="resource/css/images/logoJava.jpg" alt="">
 				</ul>
-			</div>
+			</div>  
 		</div>
 	</div>   
 	<jsp:include page="WEB-INF/partials/footer.jsp" />
