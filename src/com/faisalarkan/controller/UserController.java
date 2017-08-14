@@ -216,7 +216,13 @@ public class UserController extends HttpServlet {
 				
 			}else {
 
-				System.out.println("Email tidak sama");
+				
+				request.setAttribute("error-html", "has-error" );
+				request.setAttribute("error-message", "Username atau password anda salah." );
+				
+				forward = "login-user.jsp";
+				RequestDispatcher view = request.getRequestDispatcher( forward );
+				view.forward(request, response);
 
 			}
 			

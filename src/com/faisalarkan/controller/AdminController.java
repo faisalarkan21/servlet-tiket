@@ -156,11 +156,17 @@ public class AdminController extends HttpServlet {
 
 			}
 
+			else { 
+				
+				
+				request.setAttribute("error-html", "has-error" );
+				request.setAttribute("error-message", "Username atau password anda salah." );
+				
+				forward = "login-admin.jsp";
+				RequestDispatcher view = request.getRequestDispatcher( forward );
+				view.forward(request, response);
 
-
-			else {
-
-				System.out.println("Email tidak sama");
+				
 
 			}
 
