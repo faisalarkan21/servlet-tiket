@@ -130,6 +130,8 @@ public class UserDao  {
 
 	public Gabungan getUserById(int pembeliId) {
 		Gabungan pembeli = new Gabungan();
+	
+		
 
 		try {
 			String query = "select * from pembeli p INNER JOIN detil_pesan_tiket t on p.id_pembeli = t.id_pembeli  INNER JOIN pembeli_validasi v on v.id_pembeli = t.id_pembeli where p.id_pembeli = ?";
@@ -147,9 +149,42 @@ public class UserDao  {
 				pembeli.setPilihan_bank( resultSet.getString( "pilihan_bank" ));
 				pembeli.setHarga_tiket( resultSet.getDouble( "harga_tiket" ));
 				pembeli.setUang_transfer_validasi( resultSet.getDouble( "uang_transfer_validasi" ));
+				pembeli.setBandara_berangkat(resultSet.getInt( "bandara_berangkat" ));
+				pembeli.setBandara_tujuan(resultSet.getInt( "bandara_tujuan" ));
+				pembeli.setTotal_transfer(resultSet.getDouble( "total_transfer" ));
+							
 			}
 
+			
 
+			
+			String queryBerangkat = "select * from pajak_bandara where id_bandara=?";
+			PreparedStatement preparedStatementBerangkat = conn.prepareStatement( queryBerangkat );
+			preparedStatementBerangkat.setInt(1, pembeli.getBandara_berangkat());
+			ResultSet resultSetBerangkat = preparedStatementBerangkat.executeQuery();
+			while( resultSetBerangkat.next() ) {
+				pembeli.setNm_berangkat(resultSetBerangkat.getString("nm_bandara"));
+				pembeli.setHargaBerangkat(resultSetBerangkat.getDouble("pajak"));
+				
+
+			}
+			resultSetBerangkat.close();
+			preparedStatementBerangkat.close();
+			
+			
+			String queryTujuan = "select * from pajak_bandara where id_bandara=?";
+			PreparedStatement preparedStatementTujuan = conn.prepareStatement( queryTujuan );
+			preparedStatementTujuan.setInt(1, pembeli.getBandara_tujuan());
+			ResultSet resultSetTujuan = preparedStatementTujuan.executeQuery();
+			while( resultSetTujuan.next() ) {
+				
+				pembeli.setNm_tujuan(resultSetTujuan.getString("nm_bandara"));
+				pembeli.setHargaTujuan(resultSetTujuan.getDouble("pajak"));
+			}
+			resultSetTujuan.close();
+			preparedStatementTujuan.close();
+			
+			
 
 			resultSet.close();
 			preparedStatement.close();

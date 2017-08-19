@@ -37,6 +37,8 @@ public class UserController extends HttpServlet {
 		String forward = "";
 		String action = request.getParameter( "action" );
 
+		ConvertCurrency convertCurrency = new ConvertCurrency();
+		
 		if( action.equalsIgnoreCase( "getBandaraHarga" ) ) {
 			forward = "";
 			int idBandara = Integer.parseInt( request.getParameter("idBandara") );
@@ -67,9 +69,27 @@ public class UserController extends HttpServlet {
 			int idUser = Integer.parseInt(request.getParameter("userId"));
 			Gabungan pembeli = dao.getUserById(idUser);			
 
+			System.out.println(pembeli.getNm_berangkat());
 			request.setAttribute("dataPembeli", pembeli );
 
-
+			request.setAttribute("hargaBerangkatRp", convertCurrency.toRp(pembeli.getHargaBerangkat()));
+			request.setAttribute("hargaTujuanRp", convertCurrency.toRp(pembeli.getHargaTujuan()));
+			request.setAttribute("hargaTotalRp", convertCurrency.toRp(pembeli.getHarga_tiket()));
+			
+			
+			double uangTransfer =  pembeli.getTotal_transfer();  
+			boolean hasPaid;
+			
+			
+			if (uangTransfer == 0) {
+				hasPaid = false;
+			}else {
+				hasPaid = true;
+			}
+			
+			request.setAttribute("hasPaid", hasPaid);
+			
+ 
 			RequestDispatcher view = request.getRequestDispatcher( forward );
 			view.forward(request, response);
 
@@ -87,6 +107,8 @@ public class UserController extends HttpServlet {
 			
 			
 			
+			
+			
 			if (uangTransfer == 0) {
 				isSend = false;
 			}else {
@@ -94,7 +116,13 @@ public class UserController extends HttpServlet {
 			}
 			
 		
-		
+			
+			request.setAttribute("hargaBerangkatRp", convertCurrency.toRp(pembeli.getHargaBerangkat()));
+			request.setAttribute("hargaTujuanRp", convertCurrency.toRp(pembeli.getHargaTujuan()));
+			request.setAttribute("hargaTotalRp", convertCurrency.toRp(pembeli.getHarga_tiket()));
+			
+
+			
 			request.setAttribute("dataPembeli", pembeli );
 			request.setAttribute("isSend", isSend);
 

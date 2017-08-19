@@ -16,14 +16,32 @@ public class Gabungan {
 	
 	private double harga_tiket;
 	private double total_transfer;
+	
 	private int bandara_berangkat;
 	private int bandara_tujuan;
+	
+	private double hargaBerangkat;
+	private double hargaTujuan;
+	
 	
 	private String nm_tujuan;
 	private String nm_berangkat; 
 	
 	
 	
+	
+	public double getHargaBerangkat() {
+		return hargaBerangkat;
+	}
+	public void setHargaBerangkat(double hargaBerangkat) {
+		this.hargaBerangkat = hargaBerangkat;
+	}
+	public double getHargaTujuan() {
+		return hargaTujuan;
+	}
+	public void setHargaTujuan(double hargaTujuan) {
+		this.hargaTujuan = hargaTujuan;
+	}
 	public String getNm_tujuan() {
 		return nm_tujuan;
 	}
