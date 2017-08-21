@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.faisalarkan.dao.AdminDao;
+import com.faisalarkan.encryption.AES;
 import com.faisalarkan.helper.ConvertCurrency;
 import com.faisalarkan.model.Admin;
 import com.faisalarkan.model.Gabungan;
@@ -25,6 +26,7 @@ public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String lIST_STUDENT = "/listStudent.jsp";
 	public static final String INSERT_OR_EDIT = "/student.jsp";
+    final String secretKey = "62C4516F79FD4109713264CCE9ED5E6E60D4AE0C";
 
 	public AdminController() {
 		dao = new AdminDao();
@@ -138,13 +140,14 @@ public class AdminController extends HttpServlet {
 
 			String email = request.getParameter("email") ;
 			String password = request.getParameter("password");
-
+			
 
 			System.out.println(admin.getNm_admin());
 			System.out.println(admin.getEmail_admin());
 
+			String decryptedString = AES.decrypt(admin.getPass_admin(), secretKey) ;
 
-			if (email.equalsIgnoreCase(admin.getEmail_admin())  && password.equalsIgnoreCase(admin.getPass_admin())) {
+			if (email.equalsIgnoreCase(admin.getEmail_admin())  && password.equalsIgnoreCase(decryptedString)) {
 
 				forward = request.getContextPath() + "/AdminController?action=statistik";
 				System.out.println("Email Sama");

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.faisalarkan.dao.UserDao;
+import com.faisalarkan.encryption.AES;
 import com.faisalarkan.helper.ConvertCurrency;
 import com.faisalarkan.model.Gabungan;
 import com.faisalarkan.model.User;
@@ -28,6 +29,7 @@ public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String lIST_STUDENT = "/listStudent.jsp";
 	public static final String INSERT_OR_EDIT = "/student.jsp";
+	final String secretKey = "433D9113B5206ED18C6D9F31D991CCCD00CA3803";
 
 	public UserController() {
 		dao = new UserDao();
@@ -36,6 +38,8 @@ public class UserController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String forward = "";
 		String action = request.getParameter( "action" );
+
+		ConvertCurrency convertCurrency = new ConvertCurrency();
 
 		if( action.equalsIgnoreCase( "getBandaraHarga" ) ) {
 			forward = "";
@@ -46,14 +50,14 @@ public class UserController extends HttpServlet {
 
 
 		}else if( action.equalsIgnoreCase( "logout" ) ) {
-			
+
 			HttpSession session = request.getSession();
-		
+
 			session.removeAttribute("id");
 			session.removeAttribute("user");
 			session.removeAttribute("email");
 			response.sendRedirect(request.getContextPath());
-			
+
 
 		}
 
@@ -67,7 +71,25 @@ public class UserController extends HttpServlet {
 			int idUser = Integer.parseInt(request.getParameter("userId"));
 			Gabungan pembeli = dao.getUserById(idUser);			
 
+			System.out.println(pembeli.getNm_berangkat());
 			request.setAttribute("dataPembeli", pembeli );
+
+			request.setAttribute("hargaBerangkatRp", convertCurrency.toRp(pembeli.getHargaBerangkat()));
+			request.setAttribute("hargaTujuanRp", convertCurrency.toRp(pembeli.getHargaTujuan()));
+			request.setAttribute("hargaTotalRp", convertCurrency.toRp(pembeli.getHarga_tiket()));
+
+
+			double uangTransfer =  pembeli.getTotal_transfer();  
+			boolean hasPaid;
+
+
+			if (uangTransfer == 0) {
+				hasPaid = false;
+			}else {
+				hasPaid = true;
+			}
+
+			request.setAttribute("hasPaid", hasPaid);
 
 
 			RequestDispatcher view = request.getRequestDispatcher( forward );
@@ -84,17 +106,25 @@ public class UserController extends HttpServlet {
 
 			double uangTransfer =  pembeli.getUang_transfer_validasi();
 			boolean isSend;
-			
-			
-			
+
+
+
+
+
 			if (uangTransfer == 0) {
 				isSend = false;
 			}else {
 				isSend = true;
 			}
-			
-		
-		
+
+
+
+			request.setAttribute("hargaBerangkatRp", convertCurrency.toRp(pembeli.getHargaBerangkat()));
+			request.setAttribute("hargaTujuanRp", convertCurrency.toRp(pembeli.getHargaTujuan()));
+			request.setAttribute("hargaTotalRp", convertCurrency.toRp(pembeli.getHarga_tiket()));
+
+
+
 			request.setAttribute("dataPembeli", pembeli );
 			request.setAttribute("isSend", isSend);
 
@@ -112,17 +142,17 @@ public class UserController extends HttpServlet {
 
 			double uangTransfer =  pembeli.getUang_transfer_validasi();
 			boolean isSend;
-			
-			
-			
+
+
+
 			if (uangTransfer == 0) {
 				isSend = false;
 			}else {
 				isSend = true;
 			}
-			
-		
-		
+
+
+
 			request.setAttribute("dataPembeli", pembeli );
 			request.setAttribute("isSend", isSend);
 
@@ -132,26 +162,12 @@ public class UserController extends HttpServlet {
 		}
 
 
-		//		else if( action.equalsIgnoreCase( "insert" ) ) {
-		//			forward = INSERT_OR_EDIT;
-		//		}
-		//		else {
-		//			forward = lIST_STUDENT;
-		//			request.setAttribute("students", dao.getAllStudents() );
-		//		}
-		//		RequestDispatcher view = request.getRequestDispatcher( forward );
-		//		view.forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//		student.setFirstName( request.getParameter( "firstName" ) );
-		//		student.setLastName( request.getParameter( "lastName" ) );
-		//
-		//
-		//		String studentId = request.getParameter("studentId");
-		//
+
 		ConvertCurrency convert = new ConvertCurrency();
 
 		String forward = "";
@@ -161,29 +177,33 @@ public class UserController extends HttpServlet {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
 
+			String encryptedString = AES.encrypt(request.getParameter("password"), secretKey) ;
+			System.out.println(encryptedString);			
+
 			forward = "login-user.jsp";
 			System.out.println(request.getParameter("totalHargaTiket"));
 			Gabungan pembeli = new Gabungan();
+
 			pembeli.setNm_pembeli(request.getParameter("nama"));
 			pembeli.setEmail_pembeli(request.getParameter("email"));
-			pembeli.setPassword(request.getParameter("password"));
+			pembeli.setPassword(encryptedString);
 			pembeli.setHp_pembeli(request.getParameter("hp"));
 			pembeli.setGd_pembeli(request.getParameter("gd"));
 			pembeli.setBandara_berangkat(Integer.parseInt(request.getParameter("berangkatBandara")));
 			pembeli.setBandara_tujuan(Integer.parseInt(request.getParameter("tujuanBandara")));
-			
+
 			try {
 				pembeli.setHarga_tiket(convert.UnformatRp(request.getParameter("totalHargaTiket")));
 			} catch (ParseException e) {
-				
+
 				e.printStackTrace();
 			}
-			
+
 			pembeli.setUang_transfer_validasi(0);
 			pembeli.setPilihan_bank(request.getParameter("bank"));
 			pembeli.setTgl_order(dateFormat.format(date));
 			dao.addPembeli(pembeli);
-			
+
 			RequestDispatcher view = request.getRequestDispatcher( forward );
 			view.forward(request, response);
 
@@ -204,7 +224,10 @@ public class UserController extends HttpServlet {
 			System.out.println(pembeli.getPassword());
 			System.out.println(pembeli.getNm_pembeli());
 
-			if (email.equalsIgnoreCase(pembeli.getEmail_pembeli())  && password.equalsIgnoreCase(pembeli.getPassword())) {
+			String decryptedString = AES.decrypt(pembeli.getPassword(), secretKey) ;
+			System.out.println(decryptedString);
+
+			if (email.equalsIgnoreCase(pembeli.getEmail_pembeli())  && password.equalsIgnoreCase(decryptedString)) {
 
 				System.out.println("Email Sama");
 				HttpSession session = request.getSession(true); 
@@ -213,20 +236,20 @@ public class UserController extends HttpServlet {
 				session.setAttribute("email", pembeli.getEmail_pembeli());
 				forward = "halaman-user/user/dashboard.jsp";
 				response.sendRedirect(forward);
-				
+
 			}else {
 
-				
+
 				request.setAttribute("error-html", "has-error" );
 				request.setAttribute("error-message", "Username atau password anda salah." );
-				
+
 				forward = "login-user.jsp";
 				RequestDispatcher view = request.getRequestDispatcher( forward );
 				view.forward(request, response);
 
 			}
-			
-			
+
+
 
 
 		} else if  ( action.equalsIgnoreCase( "data-pembeli" )) {
@@ -234,43 +257,43 @@ public class UserController extends HttpServlet {
 
 			int idUser = Integer.parseInt(request.getParameter("userId"));
 			System.out.println(idUser);
-			
+
 			Gabungan pembeli = new Gabungan ();
-			
+
 			pembeli.setNm_pembeli(request.getParameter("nama"));
 			pembeli.setEmail_pembeli(request.getParameter("email"));
 			pembeli.setHp_pembeli(request.getParameter("hp"));
 			pembeli.setIdUser(idUser);
-			
+
 			dao.updatePembeli(pembeli);		
-			
+
 			response.sendRedirect("UserController?action=data-pembeli&userId="+idUser);
-			
+
 
 		}
-		
+
 		else if  ( action.equalsIgnoreCase( "validasi-tiket" )) {
 
-			
+
 			int idUser = Integer.parseInt(request.getParameter("userId"));
-			
+
 			Gabungan pembeli = new Gabungan ();
-			
+
 			pembeli.setUang_transfer_validasi(Double.parseDouble(request.getParameter("hargaTiketTotal")));
 			pembeli.setPilihan_bank(request.getParameter("pilihanBank"));
 			pembeli.setIdUser(idUser);
-			
+
 			System.out.println("asas");
 			System.out.println(pembeli.getUang_transfer_validasi());
 			dao.updateValidasi(pembeli);		
-			
+
 			response.sendRedirect("UserController?action=validasi-tiket&userId="+idUser);
-			
+
 
 		}
 
 
-	
+
 
 
 

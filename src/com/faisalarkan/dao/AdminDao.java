@@ -96,7 +96,7 @@ public class AdminDao {
 	public Statistik statistikUser() {
 		Statistik statistik = new Statistik ();
 		try {
-
+			
 			PreparedStatement preparedStatement = conn.prepareStatement(queryStatistik);
 
 			ResultSet resultSet = preparedStatement.executeQuery();

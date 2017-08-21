@@ -53,17 +53,81 @@
 										</div>
 									</div>
 								</div>
+								
+								
+								<div class="col-md-9"  >
 
-								<div class="col-md-4 col-md-offset-1">
-									<div class="form-group has-warning ">
-										<label class="control-label" for="inputWarning">Harga Tiket</label>
+									<br> <label  
+										class="control-label"> Tujuan Penerbangan</label>
+									<hr class="">
+
+								</div>
+
+
+ 
+								<div class="col-md-4   ">
+									<div id="ketikEmail" class="form-group {{error}}">
+
 										<div class="form-input">
-											<input class="form-control" id="hargaTiket" type="text" name="hargaTiketTotal" value="${dataPembeli.harga_tiket}"  readonly>
+											  
+											<label for="nama " class="control-label">
+												Keberangkatan </label> <input class="form-control " name="nama"
+												placeholder="" type="" id=""
+												value="${dataPembeli.nm_berangkat}" readonly>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-5 ">
-									<div class="form-group ">
+        
+								<div class="col-md-4 col-md-offset-1">
+									<div id="ketikPass" class="form-group  {{error}}">
+									<div class="form-input">
+											
+											<label for="email " class="control-label"> Tujuan </label>
+											 <input
+												class="form-control" name="" placeholder="" type="" id=""
+												value="${dataPembeli.nm_tujuan}" readonly>
+										</div>
+									</div>
+								</div> 
+
+
+
+								<div class="col-md-4   ">
+									<div id="ketikEmail" class="form-group {{error}}">
+
+										<div class="form-input">  
+											     
+											<label for="nama " class="control-label">
+												Harga Keberangkatan </label> <input class="form-control " name="nama"
+												placeholder="" type="" id=""
+												value="<%= request.getAttribute("hargaBerangkatRp") %>" readonly>
+										</div>
+									</div>
+								</div>
+     
+								<div class="col-md-4 col-md-offset-1">
+									<div id="ketikPass" class="form-group  {{error}}">
+									<div class="form-input">
+											
+											<label for="email " class="control-label">  Harga Tujuan </label>
+											 <input
+												class="form-control" name="" placeholder="" type="" id=""
+												value="<%= request.getAttribute("hargaTujuanRp") %>" readonly>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-md-4 ">
+									<div class="form-group has-warning ">
+										<label class="control-label" for="inputWarning">Harga Tiket</label>
+										<div class="form-input">
+											<input class="form-control" id="hargaTiket" type="text" name="hargaTiketTotal" value="<%= request.getAttribute("hargaTotalRp") %>"  readonly>
+										</div>
+									</div>
+								</div>  
+								<div class="col-md-5 col-md-offset-1">
+									<div class="form-group ">  
 										<label class="control-label" for="bank">Pilihan Bank </label>
 										<div class="form-input">
 											<input readonly class="form-control" type="text" name="pilihanBank" value="${dataPembeli.pilihan_bank}">
@@ -76,10 +140,10 @@
 						</div>
 						<!-- orang 2 -->
 						<!-- Orang Sekunder -->
-						<div class="col-md-offset-9">
+						<div class="col-md-offset-8">
 							
 							
-							<%  
+							<%   
 							
 							
 							if (((Boolean)request.getAttribute("isSend"))) {   %>
