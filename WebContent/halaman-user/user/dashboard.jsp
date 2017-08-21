@@ -60,10 +60,6 @@ BRI - NO REKENING <code style="font-size: 15px;"> 78787878741 </code> - Sativa K
 			</div>
 		</div>
 
-
-		
-
-
 	</div>
 
 
