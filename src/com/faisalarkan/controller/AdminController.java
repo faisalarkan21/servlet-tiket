@@ -26,9 +26,9 @@ public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String lIST_STUDENT = "/listStudent.jsp";
 	public static final String INSERT_OR_EDIT = "/student.jsp";
-    final String secretKey = "62C4516F79FD4109713264CCE9ED5E6E60D4AE0C";
+	final String secretKey = "433D9113B5206ED18C6D9F31D991CCCD00CA3803";
 
-	public AdminController() {
+	public AdminController() {    
 		dao = new AdminDao();
 	}
 
@@ -52,7 +52,6 @@ public class AdminController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher( forward );
 			view.forward(request, response);
 
-
 		} else if( action.equalsIgnoreCase( "getAllPembeli" ) ) {
 
 			forward = "halaman-user/admin/semua-pembeli.jsp";		
@@ -62,39 +61,10 @@ public class AdminController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher( forward );
 			view.forward(request, response);
 
-		} else if( action.equalsIgnoreCase( "getPembeliLunas" ) ) {
-
-			forward = "halaman-user/admin/pembeli-lunas.jsp";		
-			List <Gabungan> gabungan = dao.getPembeliLunas();
-			request.setAttribute("dataPembeliLunas", gabungan );	
-
-			RequestDispatcher view = request.getRequestDispatcher( forward );
-			view.forward(request, response);
-
-		}else if( action.equalsIgnoreCase( "getPembeliBelumLunas" ) ) {
-
-			forward = "halaman-user/admin/pembeli-belum-lunas.jsp";		
-			List <Gabungan> gabungan = dao.getPembeliBelumLunas();
-			request.setAttribute("dataPembeliBelumLunas", gabungan );	
-
-			RequestDispatcher view = request.getRequestDispatcher( forward );
-			view.forward(request, response);
-
-		}else if( action.equalsIgnoreCase( "getKotakValidasi" ) ) {
-
-			forward = "halaman-user/admin/kotak-validasi.jsp";		
-			List <Gabungan> gabungan = dao.getKotakValidasi();
-			request.setAttribute("dataKotakValidasi", gabungan );	
-
-			RequestDispatcher view = request.getRequestDispatcher( forward );
-			view.forward(request, response);
-
-		} else if( action.equalsIgnoreCase( "userDetail" ) ) {
+		}else if( action.equalsIgnoreCase( "userDetail" ) ) {
 
 			forward = "halaman-user/admin/detail-user.jsp";		
-
-			int userId = Integer.parseInt(request.getParameter("userId"));			
-
+			int userId = Integer.parseInt(request.getParameter("userId"));		
 
 			Gabungan pembeli = dao.getUserById(userId);			
 
@@ -108,7 +78,44 @@ public class AdminController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher( forward );
 			view.forward(request, response);
 
-		} else if( action.equalsIgnoreCase( "logout" ) ) {
+		} else if( action.equalsIgnoreCase( "getPembeliLunas" ) ) {
+
+			forward = "halaman-user/admin/pembeli-lunas.jsp";		
+			List <Gabungan> gabungan = dao.getPembeliLunas();
+			request.setAttribute("dataPembeliLunas", gabungan );	
+
+			RequestDispatcher view = request.getRequestDispatcher( forward );
+			view.forward(request, response);
+
+		} 
+		
+		
+		
+		
+		else if( action.equalsIgnoreCase( "getPembeliBelumLunas" ) ) {
+
+			forward = "halaman-user/admin/pembeli-belum-lunas.jsp";		
+			List <Gabungan> gabungan = dao.getPembeliBelumLunas();
+			request.setAttribute("dataPembeliBelumLunas", gabungan );	
+
+			RequestDispatcher view = request.getRequestDispatcher( forward );
+			view.forward(request, response);
+
+		}	else if( action.equalsIgnoreCase( "getKotakValidasi" ) ) {
+
+			forward = "halaman-user/admin/kotak-validasi.jsp";		
+			List <Gabungan> gabungan = dao.getKotakValidasi();
+			request.setAttribute("dataKotakValidasi", gabungan );	
+
+			RequestDispatcher view = request.getRequestDispatcher( forward );
+			view.forward(request, response);
+
+		} 
+		
+		
+		
+		
+		else if( action.equalsIgnoreCase( "logout" ) ) {
 
 			HttpSession session = request.getSession();
 			session.removeAttribute("admin");
@@ -140,7 +147,7 @@ public class AdminController extends HttpServlet {
 
 			String email = request.getParameter("email") ;
 			String password = request.getParameter("password");
-			
+
 
 			System.out.println(admin.getNm_admin());
 			System.out.println(admin.getEmail_admin());
@@ -159,29 +166,21 @@ public class AdminController extends HttpServlet {
 
 			}
 
-			else { 
-				
-				
+			else { 				
+
 				request.setAttribute("error-html", "has-error" );
-				request.setAttribute("error-message", "Username atau password anda salah." );
-				
+				request.setAttribute("error-message", "Username atau password anda salah." );				
 				forward = "login-admin.jsp";
 				RequestDispatcher view = request.getRequestDispatcher( forward );
-				view.forward(request, response);
-
-				
+				view.forward(request, response);	
 
 			}
-
 
 		} else if( action.equalsIgnoreCase( "updateDetail" ) ) {
 			try {
 				forward = "halaman-user/admin/detail-user.jsp";		
 
-				int userId = Integer.parseInt(request.getParameter("userId"));		
-
-
-
+				int userId = Integer.parseInt(request.getParameter("userId"));	
 
 				double unFormatRpTrasnfer= 0;
 
@@ -198,13 +197,14 @@ public class AdminController extends HttpServlet {
 
 				}
 
-
-
 				double unFormatRpHarga = convert.UnformatRp(request.getParameter("hargaTiket"));
 
 				Gabungan pembeli = new Gabungan ();
 				pembeli.setTotal_transfer(unFormatRpTrasnfer);
 				pembeli.setIdUser(userId);
+				pembeli.setNm_pembeli(request.getParameter("nama"));
+				pembeli.setEmail_pembeli(request.getParameter("email"));
+				pembeli.setHp_pembeli(request.getParameter("no_hp"));					
 
 				if (unFormatRpTrasnfer  != unFormatRpHarga) {
 
@@ -215,12 +215,8 @@ public class AdminController extends HttpServlet {
 					pembeli.setStatus(1);
 				}
 
-
-				dao.updatePembeliLunas(pembeli);			
-
-
+				dao.updatePembeliLunas(pembeli);	
 				response.sendRedirect("AdminController?action=getAllPembeli");
-
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -229,11 +225,11 @@ public class AdminController extends HttpServlet {
 
 
 		}	else if( action.equalsIgnoreCase( "deleteDetail" ) ) {	
-			
+
 			int userId = Integer.parseInt(request.getParameter("userId"));	
 			dao.deleteUser(userId);				
-			
-		  
+
+
 		}
 
 

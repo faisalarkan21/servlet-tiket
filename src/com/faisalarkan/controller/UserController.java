@@ -238,19 +238,13 @@ public class UserController extends HttpServlet {
 				response.sendRedirect(forward);
 
 			}else {
-
-
 				request.setAttribute("error-html", "has-error" );
 				request.setAttribute("error-message", "Username atau password anda salah." );
 
 				forward = "login-user.jsp";
 				RequestDispatcher view = request.getRequestDispatcher( forward );
 				view.forward(request, response);
-
 			}
-
-
-
 
 		} else if  ( action.equalsIgnoreCase( "data-pembeli" )) {
 
@@ -270,16 +264,18 @@ public class UserController extends HttpServlet {
 			response.sendRedirect("UserController?action=data-pembeli&userId="+idUser);
 
 
-		}
-
-		else if  ( action.equalsIgnoreCase( "validasi-tiket" )) {
-
+		} else if  ( action.equalsIgnoreCase( "validasi-tiket" )) {
 
 			int idUser = Integer.parseInt(request.getParameter("userId"));
 
 			Gabungan pembeli = new Gabungan ();
 
-			pembeli.setUang_transfer_validasi(Double.parseDouble(request.getParameter("hargaTiketTotal")));
+			try {
+				pembeli.setUang_transfer_validasi(convert.UnformatRp(request.getParameter("hargaTiketTotal")));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			pembeli.setPilihan_bank(request.getParameter("pilihanBank"));
 			pembeli.setIdUser(idUser);
 
@@ -308,4 +304,3 @@ public class UserController extends HttpServlet {
 	}
 
 }
-

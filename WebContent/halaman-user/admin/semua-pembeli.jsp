@@ -6,7 +6,6 @@
 
 <jsp:include page="../../WEB-INF/partials/header-admin.jsp" />
 
-
 <div class="table-users col-md-10 col-md-offset-2 container">
 	<div style="margin-top: 70px;" class="page-header text-center well">
 		<div class="col-md-12 ">
@@ -16,17 +15,10 @@
 				<hr class="Garistema">
 
 			</div>
-
-
-
-
-
 		</div>
-
 		<%
 			int i = 1;
 		%>
-
 		<div style="font-size: 3px;" class="bs-component">
 			<table class="table table-hover jadi-vertical">
 				<thead>
@@ -74,10 +66,6 @@
 </div>
 
 </body>
-
-
-
-
 
 <jsp:include page="../../WEB-INF/partials/footer.jsp" />
 </html>

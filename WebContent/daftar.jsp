@@ -344,7 +344,11 @@
                   },
                 url: "UserController?action=getBandaraHarga",   
                 success: function(data, text){
-                	 
+                	
+                	console.log("disni respose");
+
+                	console.log(data);
+                	
                 	$('#biayaBerangkat').val(toRp(data)) 
                 	totalHarga ();
                 }   
@@ -368,6 +372,10 @@
                   },
                 url: "UserController?action=getBandaraHarga",   
                 success: function(data, text){
+                	
+                	console.log("disni respose");
+                	console.log(data);
+                	console.log(text);
                 	
                 	$('#biayaTujuan').val(toRp(data)); 
                 	totalHarga ();  

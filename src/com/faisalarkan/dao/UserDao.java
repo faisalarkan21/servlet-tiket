@@ -47,8 +47,6 @@ public class UserDao  {
 
 
 
-
-
 	public void addPembeli( Gabungan pembeli ) {
 		try {
 			String queryPembeli = "insert into pembeli (nm_pembeli, email_pembeli, password, hp_pembeli, gd_pembeli ) values (?,?,?,?,?)";
@@ -129,10 +127,8 @@ public class UserDao  {
 	}
 
 	public Gabungan getUserById(int pembeliId) {
-		Gabungan pembeli = new Gabungan();
-	
 		
-
+		Gabungan pembeli = new Gabungan();
 		try {
 			String query = "select * from pembeli p INNER JOIN detil_pesan_tiket t on p.id_pembeli = t.id_pembeli  INNER JOIN pembeli_validasi v on v.id_pembeli = t.id_pembeli where p.id_pembeli = ?";
 			PreparedStatement preparedStatement = conn.prepareStatement( query );
@@ -140,9 +136,7 @@ public class UserDao  {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while( resultSet.next() ) {
 
-
 				System.out.println(resultSet.getString( "nm_pembeli" ));
-
 				pembeli.setNm_pembeli( resultSet.getString( "nm_pembeli" ) );
 				pembeli.setEmail_pembeli( resultSet.getString( "email_pembeli" ) );
 				pembeli.setHp_pembeli( resultSet.getString( "hp_pembeli" ));
@@ -155,23 +149,18 @@ public class UserDao  {
 							
 			}
 
-			
-
-			
 			String queryBerangkat = "select * from pajak_bandara where id_bandara=?";
 			PreparedStatement preparedStatementBerangkat = conn.prepareStatement( queryBerangkat );
 			preparedStatementBerangkat.setInt(1, pembeli.getBandara_berangkat());
 			ResultSet resultSetBerangkat = preparedStatementBerangkat.executeQuery();
 			while( resultSetBerangkat.next() ) {
 				pembeli.setNm_berangkat(resultSetBerangkat.getString("nm_bandara"));
-				pembeli.setHargaBerangkat(resultSetBerangkat.getDouble("pajak"));
-				
+				pembeli.setHargaBerangkat(resultSetBerangkat.getDouble("pajak"));				
 
 			}
 			resultSetBerangkat.close();
 			preparedStatementBerangkat.close();
-			
-			
+						
 			String queryTujuan = "select * from pajak_bandara where id_bandara=?";
 			PreparedStatement preparedStatementTujuan = conn.prepareStatement( queryTujuan );
 			preparedStatementTujuan.setInt(1, pembeli.getBandara_tujuan());
@@ -183,7 +172,6 @@ public class UserDao  {
 			}
 			resultSetTujuan.close();
 			preparedStatementTujuan.close();
-			
 			
 
 			resultSet.close();

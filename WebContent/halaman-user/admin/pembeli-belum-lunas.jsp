@@ -5,22 +5,13 @@
 <html>
 
 <jsp:include page="../../WEB-INF/partials/header-admin.jsp" />
-
-
 <div class="table-users col-md-10 col-md-offset-2 container">
 	<div style="margin-top: 70px;" class="page-header text-center well">
 		<div class="col-md-12 ">
 			<div class="col-md-13">
 				<h1 class="judul">List Pembeli Belum Lunas</h1>
-
 				<hr class="Garistema">
-
 			</div>
-
-
-
-
-
 		</div>
 
 		<%
@@ -59,11 +50,9 @@
 									value="${pembeli.status == '0' ? 'Belum Lunas': 'Lunas'}" /></td>
 							<td id="btn-edit" class="tengah text-center">	<a class="btn btn-raised btn-info" 
 							href="<%=request.getContextPath()%>/AdminController?action=userDetail&userId=${pembeli.idUser}">
-							Detail</a>
-								
+							Detail</a>			
 								
 								</td>
-
 						</tr>
 						<%
 							i = i + 1;
@@ -77,10 +66,5 @@
 </div>
 
 </body>
-
-
-
-
-
 <jsp:include page="../../WEB-INF/partials/footer.jsp" />
 </html>

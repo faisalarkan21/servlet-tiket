@@ -34,11 +34,11 @@
                   
                     <label id="panduan"><i class="fa fa-angle-double-right " aria-hidden="true"></i> Kami tidak bertanggung jawab atas <code> kesalahan transfer uang. </code>
 </label>
-                    <label id="panduan"><i class="fa fa-angle-double-right " aria-hidden="true"></i> Jika identitas pada pendaftaran tidak valid maka <code> anda tidak dapat memasuki gedung bootcamp. </code>
+                    <label id="panduan"><i class="fa fa-angle-double-right " aria-hidden="true"></i> Jika identitas pada pendaftaran tidak valid maka <code> anda tidak dapat dikenakan sangsi. </code>
 </label>
                     <label id="panduan"><i class="fa fa-angle-double-right " aria-hidden="true"></i> Mohon untuk <code> mengirim validasi tiket jika sudah transfer uang. </code>
 </label> 
-                       <label id="panduan"><i class="fa fa-angle-double-right " aria-hidden="true"></i> Tiket tidak dapat <code> diberikan kepada orang lain, diluar pendaftaran. </code> 
+                       <label id="panduan"><i class="fa fa-angle-double-right " aria-hidden="true"></i> Tiket tidak dapat <code> diberikan kepada orang lain, diluar pembelian tiket tersebut. </code> 
 </label> 
 
 <br/><br/>
@@ -46,7 +46,7 @@
                 
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 <!-- /#page-content-wrapper -->
 </div>

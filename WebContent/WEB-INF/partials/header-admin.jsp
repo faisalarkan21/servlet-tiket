@@ -35,23 +35,23 @@
 	<div id="navbarpro" class="navbar navbar-fixed-top navbar-inverse">
 		<div class="container">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
+				<button type="button" class="navbar-toggle" data-toggle="collapse"  
 					data-target=".navbar-inverse-collapse">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
-
-				</button>
-				<a class="navbar-brand" href="<%=request.getContextPath()%>"> Dashboard Admin <i
+    
+				</button> 
+				<a class="navbar-brand" href="<%=request.getContextPath() %>/halaman-user/user/dashboard.jsp"> Dashboard Admin <i
 					class="fa fa-user-secret fa-fw fa-lg" aria-hidden="true"></i>
 
 					<div class="ripple-container"></div>
-				</a>
+				</a>   
 			</div>
 			<div class="navbar-collapse navbar-inverse-collapse collapse">
-				<form class="navbar-form navbar-left ">
+				<form class="navbar-form navbar-left ">         
 					<!--<div class="form-group">
-                <button class="btn btn-raised" type="sumbit">Cari</button>              
-              </div>-->
+                <button class="btn btn-raised" type="sumbit">Cari</button>                
+              </div>-->   
 				</form>
 				<ul class="nav-drop nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" data-target="dropdown"

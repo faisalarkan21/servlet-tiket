@@ -31,7 +31,6 @@
 					<li><a class="" id="terjual" href="daftar.jsp"> Beli Tiket
 					</a></li>
 					<li><a id="daftarDiskon" href="#"> Daftar Tujuan </a></li>
-
 					<li><a id="kontak" href="#"> Hubungi Kami </a></li>
 				</ul>
 				<form class="navbar-form navbar-left ">
@@ -42,30 +41,30 @@
 				<ul class="col-md-4 nav navbar-nav navbar-right">
 					<div class="search ">
 						<form class="navbar-form form-group col-md-2">
-
 							<input type="text" class="form-control" name="" value=""
 								placeholder="Cari Disini"><i style="padding-left: 3px;"
 								class="fa fa-search fa-fw " aria-hidden="true"></i>
 						</form>
 					</div>
 					<li>
-						<%
-							if (session.getAttribute("user") != null && session.getAttribute("email") != null) {
-						%> <a
-						href="<%=request.getContextPath()%>/halaman-user/user/dashboard.jsp">Dasboard
-							User</a> <%
- 	} else if (session.getAttribute("admin") != null && session.getAttribute("email") != null) {
- %> <a
-						href="<%=request.getContextPath()%>/halaman-user/admin/dashboard-admin.jsp">Dasboard
-							Admin</a> <%
- 	} else {
- %> <a href="login-user.jsp"><i
-							class="fa fa-user-circle-o fa-fw fa-lg" aria-hidden="true"></i>
-							Masuk / Daftar</a> <%
- 	}
- %>
+					<%	if (session.getAttribute("user") != null && session.getAttribute("email") != null) { %>
 
-					</li>
+					<a href="<%=request.getContextPath()%>/halaman-user/user/dashboard.jsp">
+					Dasboard User</a>
+					
+					<% 	} else if (session.getAttribute("admin") != null && session.getAttribute("email") != null) {
+					
+					%> <a href="<%=request.getContextPath()%>/halaman-user/admin/dashboard-admin.jsp">
+					
+					Dasboard Admin</a>
+					
+					<%	} else { %>
+					
+					<a href="login-user.jsp"><i class="fa fa-user-circle-o fa-fw fa-lg" aria-hidden="true"></i>
+					Masuk / Daftar</a>
+					
+					<% } %>
+
 				</ul>
 			</div>
 		</div>
@@ -94,44 +93,36 @@
 			<div class="col-md-12  ">
 				<div id="judul2" class="preload col-md-12  judul3"
 					style="display: block; padding-left: 95px; margin-top: -200px;">
-					<h1 class="judulSlider judul3">Tentukan tujuan penerbangan anda.</h1>
-					<label class="judul3 size" for="">
-					Temukan liburan bersama keluarga dengan nyaman bersama <br/> Gunadarma Airlines, berikut daftar penerbangan yang tersedia : </label> <br> 
-					<br>
-						
-						<div style="" class="col-md-11" style="vertical-align: middle;">
-					<label  class="judul3" id="panduan"><i style="padding-right: 5px;" class="fa fa-plane " aria-hidden="true"></i> Penerbangan Jakarta - Bali Rp. 500,000 
-</label> <br/>
-					<label  class="judul3" id="panduan"><i style="padding-right: 5px;" class="fa fa-plane " aria-hidden="true"></i> Penerbangan Medan - Surabaya Rp. 500,000  </label>
- <br/>
-					<label  class="judul3" id="panduan"><i style="padding-right: 5px;" class="fa fa-plane " aria-hidden="true"></i> Penerbangan Jakarta - Medan Rp. 500,000 
-</label> <br/>
-					<label class="judul3"  id="panduan"><i style="padding-right: 5px;" class="fa fa-plane " aria-hidden="true"></i> Penerbangan Medan - Jakarta Rp. 500,000 
-</label> <br/>
-					<label class="judul3"  id="panduan"><i style="padding-right: 5px;" class="fa fa-plane " aria-hidden="true"></i> Penerbangan Pekanbaru - Bandung Rp. 500,000 
-					
-</label> <br/>
- <br/>      
-   
-					<a
-						style="background-color: #263238 !important;"
-						class="btn btn-raised btn-info" href="daftar.jsp">Beli Tiket</a>
-  
-					
-
-    
+					<h1 class="judulSlider judul3">Tentukan tujuan penerbangan
+						anda.</h1>
+					<label class="judul3 size" for=""> Temukan liburan bersama
+						keluarga dengan nyaman bersama <br /> Gunadarma Airlines, berikut
+						daftar penerbangan yang tersedia :
+					</label> <br> <br>
+					<div style="" class="col-md-11" style="vertical-align: middle;">
+						<label class="judul3" id="panduan"><i
+							style="padding-right: 5px;" class="fa fa-plane "
+							aria-hidden="true"></i> Penerbangan Jakarta - Bali Rp. 500,000 </label> <br />
+						<label class="judul3" id="panduan"><i
+							style="padding-right: 5px;" class="fa fa-plane "
+							aria-hidden="true"></i> Penerbangan Medan - Surabaya Rp. 500,000
+						</label> <br /> <label class="judul3" id="panduan"><i
+							style="padding-right: 5px;" class="fa fa-plane "
+							aria-hidden="true"></i> Penerbangan Jakarta - Medan Rp. 500,000 </label>
+						<br /> <label class="judul3" id="panduan"><i
+							style="padding-right: 5px;" class="fa fa-plane "
+							aria-hidden="true"></i> Penerbangan Medan - Jakarta Rp. 500,000 </label>
+						<br /> <label class="judul3" id="panduan"><i
+							style="padding-right: 5px;" class="fa fa-plane "
+							aria-hidden="true"></i> Penerbangan Pekanbaru - Bandung Rp.
+							500,000 </label> <br /> <br /> <a
+							style="background-color: #263238 !important;"
+							class="btn btn-raised btn-info" href="daftar.jsp">Beli Tiket</a>
+					</div>
 				</div>
-						
-				</div>
-
 			</div>
-    	
-  
-		</div>    
-  
-  
-
-		<div data-anchor="scroll4" id="picScroll5"   
+		</div>
+		<div data-anchor="scroll4" id="picScroll5"
 			class="section fp-auto-height ">
 			<div id="Kolomkontak" class="col-md-3 col-md-offset-1">
 				<h2 style="font-size: 20px;" class="kontak ">Kontak Kami</h2>
@@ -157,27 +148,16 @@
 					<li><i class="fa fa-github-alt footer-icons"
 						aria-hidden="true"></i> <a class="listSosial" href="#">Github
 					</a></li>
-					<!--</ul>     
-
-            <ul class="kontak">
-                <li><i style="padding-right: 4px; padding-bottom: 5px;"  class="fa fa-google-plus " aria-hidden="true"></i>
-     <a class="listSosial" href="#" > Google Plus </a></li>
-      <li><i style="padding-right: 8px; padding-bottom: 5px;"  class="fa  fa-amazon " aria-hidden="true"></i>
-     <a class="listSosial" href="#" > Amazon </a></li>
-     <li><i style="padding-right: 10px; padding-bottom: 5px;"  class="fa  fa-linkedin footer-icons" aria-hidden="true"></i>
-     <a class="listSosial" href="#" > Linkedin </a></li>
-
-            </ul>       -->
 			</div>
 			<div id="Kolomkontak" class="col-md-3">
 				<h2 style="font-size: 20px;" class="kontak">Situs ini dibuat
-					dengan :</h2>    
-				<ul class="kontak">   
-					<img  src="resource/css/images/logoJava.jpg" alt="">
+					dengan :</h2>
+				<ul class="kontak">
+					<img src="resource/css/images/logoJava.jpg" alt="">
 				</ul>
-			</div>  
+			</div>
 		</div>
-	</div>   
+	</div>
 	<jsp:include page="WEB-INF/partials/footer.jsp" />
 	<script>
 		$(document).ready(function() {
@@ -232,27 +212,6 @@
 								afterLoad : function(anchorLink, index) {
 									$('.preload').fadeIn(1000);
 									$('.hilang').fadeIn(1000);
-
-									// if (index == 2) {
-									//     $(".hitungPercaya").show();
-									//     $(".dipercaya").fadeIn(400);
-
-									//     $(".hitungPercaya").each(function () {
-									//         $(this).prop('Counter', 0).animate({
-
-									//             Counter: $(this).text()
-									//         }, {
-
-									//             duration: 4000,
-									//             easing: 'swing',
-									//             step: function (now) {
-									//                 $(this).text(Math.ceil(now));
-									//             }
-
-									//         })
-
-									//     });
-									// } // akhir index 2
 
 									if (index == 2) {
 

@@ -90,10 +90,10 @@
 				<ul class="sub-menu collapse" id="data">
 					<li class="active"><a href="<%=request.getContextPath()%>/UserController?action=data-pembeli&userId=<%=session.getAttribute("id")%>" ><i class="fa fa-chevron-right" aria-hidden="true"></i>
 Data Pemesan</a></li>
-					<li class="active"><a href="<%=request.getContextPath()%>/halaman-user/user/dashboard.jsp"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+					<li class="active"><a href="<%=request.getContextPath()%>/halaman-user/user/ketentuan.jsp"><i class="fa fa-chevron-right" aria-hidden="true"></i>
 Ketentuan</a></li>
 				</ul>
-				<li >
+				<li >  
 					<a  style="display: block;"  href="<%=request.getContextPath()%>/UserController?action=validasi-tiket&userId=<%=session.getAttribute("id")%>">
 						<i class="fa fa-shield fa-lg"></i>Validasi Tiket
 					</a>

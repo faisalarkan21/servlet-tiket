@@ -6,23 +6,14 @@
 
 <jsp:include page="../../WEB-INF/partials/header-admin.jsp" />
 
-
 <div class="table-users col-md-10 col-md-offset-2 container">
 	<div style="margin-top: 70px;" class="page-header text-center well">
 		<div class="col-md-12 ">
 			<div class="col-md-13">
 				<h1 class="judul">List Kotak Validasi</h1>
-
 				<hr class="Garistema">
-
 			</div>
-
-
-
-
-
 		</div>
-
 		<%
 			int i = 1;
 		%>
@@ -75,10 +66,5 @@
 </div>
 
 </body>
-
-
-
-
-
 <jsp:include page="../../WEB-INF/partials/footer.jsp" />
 </html>

@@ -18,8 +18,6 @@
 				<hr class="Garistema">
 
 			</div>
-
-
 			<div style="margin-top: -20px;" class="col-md-10">
 
 				<div class="col-md-9 col-md-offset-1" style="margin-bottom: -15px;">
@@ -315,7 +313,7 @@
 
 
 
-
+   
 
 </div>
 
