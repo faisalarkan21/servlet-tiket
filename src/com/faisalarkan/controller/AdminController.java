@@ -52,6 +52,13 @@ public class AdminController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher( forward );
 			view.forward(request, response);
 
+		} else if( action.equalsIgnoreCase( "logout" ) ) {
+
+			HttpSession session = request.getSession();
+			session.removeAttribute("admin");
+			session.removeAttribute("email");
+			response.sendRedirect(request.getContextPath());
+		
 		} else if( action.equalsIgnoreCase( "getAllPembeli" ) ) {
 
 			forward = "halaman-user/admin/semua-pembeli.jsp";		
@@ -115,15 +122,6 @@ public class AdminController extends HttpServlet {
 		
 		
 		
-		else if( action.equalsIgnoreCase( "logout" ) ) {
-
-			HttpSession session = request.getSession();
-			session.removeAttribute("admin");
-			session.removeAttribute("email");
-			response.sendRedirect(request.getContextPath());
-
-
-		}
 
 	}
 

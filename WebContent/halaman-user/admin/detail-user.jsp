@@ -252,10 +252,7 @@
 						<div style="padding-bottom: 30px; padding-left: 20px;"
 							class="col-md-10 col-md-offset-1">
 
-							<br> <br> <a
-								href="/admin/dashboard/send-email/{{userDetail.id_pembeli}}"
-								class="btn btn-primary btn-raised col-md-10">Beritahukan
-								Lewat Email</a> <a
+							<br> <br>    <a
 								style="color: white !important; background-color: #ef5350 !important;"
 								href="#" class="btn btn-raised col-md-10" data-toggle="modal"
 								data-target="#modal">Hapus Peserta</a>

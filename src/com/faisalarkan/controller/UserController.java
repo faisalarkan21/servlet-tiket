@@ -60,7 +60,7 @@ public class UserController extends HttpServlet {
 
 
 		}
-
+  
 
 		else if( action.equalsIgnoreCase( "data-pembeli" ) ) {
 			forward = "halaman-user/user/data-pembeli.jsp";
@@ -177,36 +177,52 @@ public class UserController extends HttpServlet {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
 
-			String encryptedString = AES.encrypt(request.getParameter("password"), secretKey) ;
-			System.out.println(encryptedString);			
+
+
 
 			forward = "login-user.jsp";
 			System.out.println(request.getParameter("totalHargaTiket"));
 			Gabungan pembeli = new Gabungan();
 
-			pembeli.setNm_pembeli(request.getParameter("nama"));
-			pembeli.setEmail_pembeli(request.getParameter("email"));
-			pembeli.setPassword(encryptedString);
-			pembeli.setHp_pembeli(request.getParameter("hp"));
-			pembeli.setGd_pembeli(request.getParameter("gd"));
-			pembeli.setBandara_berangkat(Integer.parseInt(request.getParameter("berangkatBandara")));
-			pembeli.setBandara_tujuan(Integer.parseInt(request.getParameter("tujuanBandara")));
 
-			try {
-				pembeli.setHarga_tiket(convert.UnformatRp(request.getParameter("totalHargaTiket")));
-			} catch (ParseException e) {
+			if (request.getParameter("password_conf").equals(request.getParameter("password")) ) {
 
-				e.printStackTrace();
+				String encryptedString = AES.encrypt(request.getParameter("password"), secretKey) ;
+				System.out.println(encryptedString);	
+  
+				pembeli.setNm_pembeli(request.getParameter("nama"));
+				pembeli.setEmail_pembeli(request.getParameter("email"));
+				pembeli.setPassword(encryptedString);
+				pembeli.setHp_pembeli(request.getParameter("hp"));
+				pembeli.setGd_pembeli(request.getParameter("gd"));
+				pembeli.setBandara_berangkat(Integer.parseInt(request.getParameter("berangkatBandara")));
+				pembeli.setBandara_tujuan(Integer.parseInt(request.getParameter("tujuanBandara")));
+
+				try {
+					pembeli.setHarga_tiket(convert.UnformatRp(request.getParameter("totalHargaTiket")));
+				} catch (ParseException e) {
+
+					e.printStackTrace();
+				}
+
+				pembeli.setUang_transfer_validasi(0);
+				pembeli.setPilihan_bank(request.getParameter("bank"));
+				pembeli.setTgl_order(dateFormat.format(date));
+				dao.addPembeli(pembeli);
+
+				RequestDispatcher view = request.getRequestDispatcher( forward );
+				view.forward(request, response);
+
+			}else {
+
+				request.setAttribute("error-html", "has-error" );
+				request.setAttribute("error-message", "Konfirmasi password tidak sama." );				
+
+				forward = "daftar.jsp";   
+				RequestDispatcher view = request.getRequestDispatcher( forward );
+				view.forward(request, response);  
+
 			}
-
-			pembeli.setUang_transfer_validasi(0);
-			pembeli.setPilihan_bank(request.getParameter("bank"));
-			pembeli.setTgl_order(dateFormat.format(date));
-			dao.addPembeli(pembeli);
-
-			RequestDispatcher view = request.getRequestDispatcher( forward );
-			view.forward(request, response);
-
 		} else if ( action.equalsIgnoreCase( "login-user" ) ) {
 
 
