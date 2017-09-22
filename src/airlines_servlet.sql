@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10 Agu 2017 pada 10.49
+-- Generation Time: 22 Sep 2017 pada 09.46
 -- Versi Server: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `nm_admin`, `email_admin`, `pass_admin`) VALUES
-(1, 'faisal arkan', 'faisalarkan21@gmail.com', 'makan');
+(1, 'faisal arkan', 'faisalarkan21@gmail.com', 'FNymmi51xAK1zoG9LUlScg==');
 
 -- --------------------------------------------------------
 
@@ -56,7 +56,7 @@ CREATE TABLE `detil_pesan_tiket` (
   `pilihan_bank` varchar(225) NOT NULL,
   `bandara_berangkat` int(11) NOT NULL,
   `bandara_tujuan` int(11) NOT NULL,
-  `status` int(11) DEFAULT NULL
+  `status` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -64,23 +64,7 @@ CREATE TABLE `detil_pesan_tiket` (
 --
 
 INSERT INTO `detil_pesan_tiket` (`prefix`, `id_pembeli`, `harga_tiket`, `total_transfer`, `pilihan_bank`, `bandara_berangkat`, `bandara_tujuan`, `status`) VALUES
-('TK', 3, '1200000.00', '0.00', 'BRI NO. 78787878741 - Sativa Ken', 3, 3, NULL),
-('TK', 4, '600000.00', '0.00', 'BCA NO. 98080986643 - Faisal Arkan', 2, 2, NULL);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `jadwal`
---
-
-CREATE TABLE `jadwal` (
-  `id_jadwal` int(11) NOT NULL,
-  `tgl_mulai` date NOT NULL,
-  `tgl_selesai` date NOT NULL,
-  `id_kursus` int(11) NOT NULL,
-  `tgl_daftar_mulai` date NOT NULL,
-  `tgl_daftar_selesai` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+('TK', 2, '600000.00', '600000.00', 'BRI NO. 78787878741 - Sativa Ken', 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -125,8 +109,7 @@ CREATE TABLE `pembeli` (
 --
 
 INSERT INTO `pembeli` (`prefix`, `id_pembeli`, `nm_pembeli`, `email_pembeli`, `password`, `hp_pembeli`, `gd_pembeli`) VALUES
-('CS_', 3, 'faisal arkanzzzzz', 'faisalarkan21@gmail.com', 'makan', '085778805197', 'Pria'),
-('CS_', 4, 'asdasd', 'asdasdasd@sadasds', '', 'dasdsd', 'Wanita');
+('CS_', 2, 'Faisal Arkanaaa', 'faisalarkan21@gmail.com', 'biKa2mrHPsZwCCzUqkcYQQ==', '085778805197', 'Pria');
 
 -- --------------------------------------------------------
 
@@ -139,7 +122,7 @@ CREATE TABLE `pembeli_validasi` (
   `nm_pembeli` varchar(225) NOT NULL,
   `email_pembeli` varchar(225) NOT NULL,
   `hp_pembeli` varchar(225) NOT NULL,
-  `uang_transfer_validasi` decimal(10,2) DEFAULT NULL,
+  `uang_transfer_validasi` decimal(10,2) DEFAULT '0.00',
   `pilihan_bank` varchar(225) DEFAULT 'Belum Konfirmasi'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -148,8 +131,7 @@ CREATE TABLE `pembeli_validasi` (
 --
 
 INSERT INTO `pembeli_validasi` (`id_pembeli`, `nm_pembeli`, `email_pembeli`, `hp_pembeli`, `uang_transfer_validasi`, `pilihan_bank`) VALUES
-(3, 'Faisal Arkan', 'faisalarkan21@gmail.com', '085778805197', '1200000.00', 'BRI NO. 78787878741 - Sativa Ken'),
-(4, 'asdasd', 'asdasdasd@sadasds', 'dasdsd', NULL, 'BCA NO. 98080986643 - Faisal Arkan');
+(2, 'Faisal Arkan', 'faisalarkan21@gmail.com', '085778805197', '600000.00', 'BRI NO. 78787878741 - Sativa Ken');
 
 -- --------------------------------------------------------
 
@@ -168,8 +150,7 @@ CREATE TABLE `tgl_pesan` (
 --
 
 INSERT INTO `tgl_pesan` (`prefix`, `id_pembeli`, `tgl_order`) VALUES
-('CS_', 3, '2017/08/08 19:46:46'),
-('CS_', 4, '2017/08/08 19:50:15');
+('CS_', 2, '2017/09/22 14:25:50');
 
 --
 -- Indexes for dumped tables
@@ -189,14 +170,6 @@ ALTER TABLE `detil_pesan_tiket`
   ADD KEY `FK_detil_pesan` (`id_pembeli`),
   ADD KEY `bandara_berangkat` (`bandara_berangkat`),
   ADD KEY `bandara_tujuan` (`bandara_tujuan`);
-
---
--- Indexes for table `jadwal`
---
-ALTER TABLE `jadwal`
-  ADD PRIMARY KEY (`id_jadwal`),
-  ADD KEY `id_jadwal` (`id_jadwal`),
-  ADD KEY `id_kursus` (`id_kursus`);
 
 --
 -- Indexes for table `pajak_bandara`
@@ -237,12 +210,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `detil_pesan_tiket`
 --
 ALTER TABLE `detil_pesan_tiket`
-  MODIFY `id_pembeli` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `jadwal`
---
-ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pembeli` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pajak_bandara`
 --
@@ -252,17 +220,17 @@ ALTER TABLE `pajak_bandara`
 -- AUTO_INCREMENT for table `pembeli`
 --
 ALTER TABLE `pembeli`
-  MODIFY `id_pembeli` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pembeli` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pembeli_validasi`
 --
 ALTER TABLE `pembeli_validasi`
-  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tgl_pesan`
 --
 ALTER TABLE `tgl_pesan`
-  MODIFY `id_pembeli` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pembeli` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
@@ -274,12 +242,6 @@ ALTER TABLE `detil_pesan_tiket`
   ADD CONSTRAINT `FK_detil_pesan` FOREIGN KEY (`id_pembeli`) REFERENCES `tgl_pesan` (`id_pembeli`) ON DELETE CASCADE,
   ADD CONSTRAINT `detil_pesan_tiket_ibfk_1` FOREIGN KEY (`bandara_berangkat`) REFERENCES `pajak_bandara` (`id_bandara`),
   ADD CONSTRAINT `detil_pesan_tiket_ibfk_2` FOREIGN KEY (`bandara_tujuan`) REFERENCES `pajak_bandara` (`id_bandara`);
-
---
--- Ketidakleluasaan untuk tabel `jadwal`
---
-ALTER TABLE `jadwal`
-  ADD CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`id_kursus`) REFERENCES `kursus` (`id_kursus`);
 
 --
 -- Ketidakleluasaan untuk tabel `pembeli_validasi`
