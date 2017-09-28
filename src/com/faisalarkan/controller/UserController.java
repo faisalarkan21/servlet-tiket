@@ -53,10 +53,13 @@ public class UserController extends HttpServlet {
 
 			HttpSession session = request.getSession();
 
+			forward = "/";
+			
 			session.removeAttribute("id");
 			session.removeAttribute("user");
 			session.removeAttribute("email");
-			response.sendRedirect(request.getContextPath());
+			RequestDispatcher view = request.getRequestDispatcher( forward );
+			view.forward(request, response);
 
 
 		}
